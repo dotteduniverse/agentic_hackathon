@@ -1,0 +1,9 @@
+.env
+qdrant_db/
+logs/
+__pycache__/
+*.pyc
+venv/
+.idea/
+.vscode/
+*.pdf
