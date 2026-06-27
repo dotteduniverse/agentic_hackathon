@@ -62,9 +62,9 @@ pip install -r requirements.txt
 ---
 
 ## 2. Configure Secrets
-``` text
-Copy .env.example to .env and fill:
 
+Copy .env.example to .env and fill:
+``` bash
 env
 # Choose ONE LLM backend
 GROQ_API_KEY=your_key_here       # if using Groq (free, fast)
@@ -128,12 +128,16 @@ final_answer: Under Article 5, retention must be minimised...
 ```
 ---
 ## 🔮 Next Sprints
-Sprint	Focus	Status
-1 (this)	Single agent + Qdrant + MCP + HITL	✅ Complete
-2	Multi‑agent Supervisor (Planner/Retriever/DB) with routing	🚧 Planned
-3	FastAPI + Docker + RAGAS evaluation	🚧 Planned
-🧑‍💻 Author
-Veera Malla Reddy. V – AI Solution Architect
-LinkedIn · GitHub
 
-Built as part of a 3‑day self‑hackathon to master agentic AI for enterprise production.
+| Sprint | Focus | Status |
+| :--- | :--- | :--- |
+| **1 (this)** | Single agent + Qdrant + MCP + HITL | ✅ Complete |
+| **2** | Multi‑agent Supervisor (Planner/Retriever/DB) with routing | 🚧 Planned |
+| **3** | FastAPI + Docker + RAGAS evaluation | 🚧 Planned |
+
+---
+## 🧑‍💻 Author  
+**Veera Malla Reddy. V** – AI Solution Architect  
+[LinkedIn](https://www.linkedin.com/in/veera-malla-reddy/) · [GitHub](https://github.com/veeramallareddy)
+
+Built as part of a 3‑day self‑hackathon to create agentic AI for enterprise production.
