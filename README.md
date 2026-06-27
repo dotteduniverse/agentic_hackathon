@@ -47,6 +47,8 @@ flowchart LR
     style A fill:#f9f,stroke:#333
     style T fill:#bbf,stroke:#333
     style MCP fill:#afa,stroke:#333
+```
+
 ---
 
 ## 1. Clone & Environment
