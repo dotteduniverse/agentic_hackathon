@@ -23,6 +23,7 @@ Designed to match the **Senior AI/Agentic Solution Architect** JD – every line
 
 ### High‑Level Component View
 
+![System Architecture](architecture.png)
 ```mermaid
 flowchart LR
     U[User / CLI] --> G[LangGraph Agent]
