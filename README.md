@@ -52,15 +52,17 @@ flowchart LR
 ---
 
 ## 1. Clone & Environment
-bash
+``` bash
 git clone <your-repo-url>
 cd agentic_hackathon
 python -m venv venv
 source venv/bin/activate      # Windows: venv\Scripts\activate
 pip install -r requirements.txt
+```
 ---
 
 ## 2. Configure Secrets
+``` text
 Copy .env.example to .env and fill:
 
 env
@@ -71,15 +73,16 @@ GROQ_API_KEY=your_key_here       # if using Groq (free, fast)
 QDRANT_PATH=./qdrant_db          # local disk path
 # QDRANT_URL=...                 # uncomment if using cloud
 # QDRANT_API_KEY=...
+```
 ---
 
 ## 3. Ingest Regulatory PDFs
 Place your 3 PDFs (GDPR/BCBS/SOC2 snippets) into ./docs/, then run:
 
-bash
+``` bash
 python -m src.qdrant_ingest
 Expected output: ✅ Ingested 47 chunks into collection 'regulatory_docs'.
-
+```
 ---
 ## 4. Run the Agent
 bash
