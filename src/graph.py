@@ -1,15 +1,17 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from typing import Literal
 from langgraph.graph import StateGraph, END
-from langgraph.prebuilt import ToolExecutor
-from langchain_core.messages import AIMessage, HumanMessage
-from config import llm
+from langgraph.prebuilt import ToolNode
+from langchain_core.messages import HumanMessage
+from src.config import llm
 from src.state import AgentState, MCPContext
-from src.prompts import SYSTEM_PROMPT, HUMAN_CONFIRM_PROMPT
+from src.prompts import SYSTEM_PROMPT
 from src.tools import retrieve_tool, mock_db_tool
 
 # ---------- Bind tools to LLM ----------
 tools = [retrieve_tool, mock_db_tool]
-tool_executor = ToolExecutor(tools)
 llm_with_tools = llm.bind_tools(tools)
 
 # ---------- MCP Structured Output (forces context) ----------
@@ -19,7 +21,8 @@ def enforce_mcp_context(query: str) -> MCPContext:
     prompt = (
         f"User query: {query}\n"
         "Based on this, output an MCPContext with required_action one of: "
-        "'retrieve_only', 'db_lookup', or 'both'."
+        "'retrieve_only', 'db_lookup', or 'both'.\n"
+        "For customer_balance, if not requested or unknown, output null (not 'None' or 'none')."
     )
     return structured_llm.invoke(prompt)
 
@@ -27,26 +30,19 @@ def enforce_mcp_context(query: str) -> MCPContext:
 def agent_node(state: AgentState):
     messages = state["messages"]
     # Prepend system prompt if not present
-    if not any(isinstance(m, type(messages[0])) and m.content == SYSTEM_PROMPT for m in messages):
+    if not any(isinstance(m, HumanMessage) and m.content == SYSTEM_PROMPT for m in messages):
         messages = [HumanMessage(content=SYSTEM_PROMPT)] + messages
     response = llm_with_tools.invoke(messages)
     return {"messages": [response]}
 
-# ---------- Node: Tools ----------
+# ---------- Node: Tools (using ToolNode) ----------
+tool_node = ToolNode(tools)
+
 def tools_node(state: AgentState):
-    last_msg = state["messages"][-1]
-    # Check if human confirmation is needed for DB tool
-    if last_msg.tool_calls:
-        for tc in last_msg.tool_calls:
-            if tc["name"] == "mock_db_tool":
-                # Simulate interrupt – in real prod, you'd pause and wait for input.
-                # For demo, we auto-confirm but print the warning.
-                print("\n🔴 [INTERRUPT] DB access requested. Confirm? (auto-confirming for demo)")
-                # In production: use `graph.interrupt()` or a separate input loop.
-                # See demo.py for manual confirm.
-                pass
-    result = tool_executor.invoke(last_msg)
-    return {"messages": [result]}
+    # ToolNode handles execution automatically, including interrupt simulation if needed.
+    # For demo, we just call it.
+    result = tool_node.invoke(state)
+    return result  # returns dict with "messages"
 
 # ---------- Router ----------
 def router(state: AgentState) -> Literal["tools", END]:

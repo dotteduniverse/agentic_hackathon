@@ -1,3 +1,6 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from langchain_core.tools import tool
 
 # Hardcoded mock data – simulates a PostgreSQL banking system
