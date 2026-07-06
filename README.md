@@ -141,16 +141,7 @@ A supervisor delegates tasks to three specialized workers: Retriever Agent (RAG)
 
 **Architecture:**
 ![System Architecture](sprint2.png)
-```mermaid
-graph LR
-    U[User] --> S[Supervisor]
-    S -->|route| P[Planner Agent]
-    S -->|route| R[Retriever Agent]
-    S -->|route| D[DB Agent]
-    P -->|return| S
-    R -->|return| S
-    D -->|return| S
-    S -->|response| Final[Final Answer]
+
 
 ---
 
