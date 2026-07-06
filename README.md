@@ -15,8 +15,6 @@ The agent answers regulatory and customer‑context queries by:
 3. **Enforcing** an MCP (Model Context Protocol) structured schema before acting.
 4. **Pausing** for human confirmation before sensitive DB lookups.
 
-Designed to match the **Senior AI/Agentic Solution Architect** JD – every line is interview‑ready.
-
 ---
 
 ## 🏗️ System Architecture
@@ -53,7 +51,7 @@ flowchart LR
 
 ## 1. Clone & Environment
 ``` bash
-git clone <your-repo-url>
+git clone https://github.com/dotteduniverse/agentic_hackathon.git
 cd agentic_hackathon
 python -m venv venv
 source venv/bin/activate      # Windows: venv\Scripts\activate
@@ -131,9 +129,57 @@ final_answer: Under Article 5, retention must be minimised...
 
 | Sprint | Focus | Status |
 | :--- | :--- | :--- |
-| **1 (this)** | Single agent + Qdrant + MCP + HITL | ✅ Complete |
-| **2** | Multi‑agent Supervisor (Planner/Retriever/DB) with routing | 🚧 Planned |
-| **3** | FastAPI + Docker + RAGAS evaluation | 🚧 Planned |
+| **1** | Single agent + Qdrant + MCP + HITL | ✅ Complete |
+| **2** | Multi‑agent Supervisor (Planner/Retriever/DB) with routing | ✅ Complete |
+| **3** | FastAPI + Docker + RAGAS evaluation | ✅ Complete |
+
+# Sprint 2: Multi-Agent Supervisor
+A supervisor delegates tasks to three specialized workers: Retriever Agent (RAG), DB Agent (data), and Planner Agent (reasoning). Complex queries are routed to the Planner first.
+### Sprint 2: Multi-Agent Supervisor
+
+**Goal:** Replace the single agent with a Supervisor that delegates tasks to specialized workers.
+
+**Architecture:**
+
+```mermaid
+flowchart LR
+    U[User] --> S[Supervisor]
+    S -->|Route| P[Planner Agent]
+    S -->|Route| R[Retriever Agent]
+    S -->|Route| D[DB Agent]
+    P --> S
+    R --> S
+    D --> S
+    S --> FINAL[Final Answer]
+
+
+---
+---
+
+# Sprint 3: Production API + Evaluation
+
+**Goal:** Package the multi-agent system as a production-ready service with evaluation.
+
+**Components:**
+
+| Component | Technology | Purpose |
+| :--- | :--- | :--- |
+| **REST API** | FastAPI + Uvicorn | Serve the agent via HTTP endpoints (`/ask`, `/health`) |
+| **Containerization** | Docker + Docker Compose | Consistent deployment anywhere |
+| **Evaluation** | RAGAS | Measure retrieval quality (Faithfulness, Context Recall, Answer Relevancy) |
+
+**API Endpoints:**
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `POST` | `/ask` | Submit a query, receive answer + MCP context + routing path |
+| `GET` | `/health` | Health check |
+
+---
+---
+**Run the API:**
+```bash
+uvicorn src.api:app --reload
 
 ---
 ## 🧑‍💻 Author  

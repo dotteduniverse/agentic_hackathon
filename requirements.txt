@@ -10,3 +10,7 @@ pytest>=8.0.0
 fastapi>=0.110.0
 uvicorn>=0.29.0
 langchain-community
+fastapi>=0.110.0
+uvicorn>=0.29.0
+ragas>=0.1.0
+datasets>=2.14.0
