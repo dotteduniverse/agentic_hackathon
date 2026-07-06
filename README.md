@@ -154,9 +154,9 @@ flowchart LR
 
 
 ---
----
 
-# Sprint 3: Production API + Evaluation
+
+### Sprint 3: Production API + Evaluation
 
 **Goal:** Package the multi-agent system as a production-ready service with evaluation.
 
@@ -175,13 +175,10 @@ flowchart LR
 | `POST` | `/ask` | Submit a query, receive answer + MCP context + routing path |
 | `GET` | `/health` | Health check |
 
----
----
 **Run the API:**
 ```bash
 uvicorn src.api:app --reload
 
----
 ## 🧑‍💻 Author  
 **Veera Malla Reddy. V** – AI Solution Architect  
 [LinkedIn](https://www.linkedin.com/in/veera-malla-reddy/) · [GitHub](https://github.com/dotteduniverse/)
