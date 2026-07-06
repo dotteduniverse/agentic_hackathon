@@ -101,7 +101,7 @@ Final structured answer
 ---
 
 ## 🧪 Testing
-bash
+```bash
 pytest tests/test_graph.py -v
 Contains 3 golden queries covering:
 
@@ -110,6 +110,7 @@ Pure retrieval
 Pure DB lookup
 
 Hybrid (both)
+```
 ---
 
 ## 📊 Observability Example (Logs)
@@ -136,7 +137,7 @@ A supervisor delegates tasks to three specialized workers: Retriever Agent (RAG)
 
 
 ---
-## Sprint 3: Production API + Evaluation
+# Sprint 3: Production API + Evaluation
 
 - **FastAPI** wraps the multi-agent system with `/ask` and `/health` endpoints.
 - **Docker** containerizes the service.
@@ -144,7 +145,7 @@ A supervisor delegates tasks to three specialized workers: Retriever Agent (RAG)
 
 ---
 
-### 🚀 Features
+## 🚀 Features
 
 | Capability | Sprint | Implementation |
 | :--- | :--- | :--- |
@@ -160,7 +161,7 @@ A supervisor delegates tasks to three specialized workers: Retriever Agent (RAG)
 
 ---
 
-### 📁 Project Structure
+## 📁 Project Structure
 
 ```text
 agentic_hackathon/
@@ -188,50 +189,56 @@ agentic_hackathon/
 ├── docs/                        # Place PDFs here
 ├── logs/
 └── qdrant_db/                   # Auto-generated, .gitignored
-### ⚙️ Setup & Installation
-bash
+```
+## ⚙️ Setup & Installation
+```bash
 python -m src.qdrant_ingest
 Expected output: ✅ Ingested X chunks into 'regulatory_docs'.
+```
 
 ▶️ Running the Demos
 Sprint 1: Single Agent
-bash
+```bash
 python demo.py
+```
 Sprint 2: Multi-Agent Supervisor
-bash
+```bash
 python demo_supervisor.py
+```
 Sprint 3: FastAPI Server
-bash
+```bash
 uvicorn src.api:app --reload
+```
 Test the API with curl:
 
-bash
+```bash
 curl -X POST http://localhost:8000/ask \
   -H "Content-Type: application/json" \
   -d '{"query": "What does GDPR say about retention?"}'
+```
 🐳 Docker Deployment
-bash
+```bash
 docker build -t agentic-hackathon .
 docker run -p 8000:8000 -e GROQ_API_KEY=$GROQ_API_KEY agentic-hackathon
+```
 Or use Docker Compose:
 
-bash
+```bash
 docker-compose up
+```
 📊 Evaluation (RAGAS)
 Run the RAGAS evaluation script to measure retrieval quality:
 
-bash
+```bash
 python evaluate_ragas.py
 Example output:
-
-text
+```
+```text
 RAGAS Evaluation Results:
 {'faithfulness': 0.85, 'answer_relevancy': 0.78, 'context_recall': 0.92}
-text
-
+```
 ---
----
-## 🔮 Next Sprints
+## 🔮 Sprints
 
 | Sprint | Focus | Status |
 | :--- | :--- | :--- |
