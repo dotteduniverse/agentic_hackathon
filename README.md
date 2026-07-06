@@ -1,8 +1,13 @@
-# 🧠 Agentic AI Hackathon – Sprint 1: Single-Agent RAG with MCP & Qdrant
+# 🧠 Agentic AI Hackathon
 
-> **Portfolio Project**  
+##🧠 Sprint 1: Single-Agent RAG with MCP & Qdrant 
 > *LangGraph · Qdrant · MCP · Human-in-the-Loop · Observability*
 
+##🧠 Sprint 2: Multi-Agent Supervisor with Routing & Delegation
+> *LangGraph · Supervisor Pattern · Specialized Agents · Planner · Hand-off Loops*
+
+##🧠 Sprint 3: Production API with FastAPI, Docker & RAGAS
+> *FastAPI · Docker · RAGAS · CI/CD Ready · Production Deployment*
 ---
 
 ## 📌 Overview
