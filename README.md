@@ -1,6 +1,6 @@
 # 🧠 Agentic AI Hackathon – Sprint 1: Single-Agent RAG with MCP & Qdrant
 
-> **Portfolio Project** | Senior AI/Agentic Solution Architect Track  
+> **Portfolio Project**  
 > *LangGraph · Qdrant · MCP · Human-in-the-Loop · Observability*
 
 ---
@@ -15,6 +15,22 @@ The agent answers regulatory and customer‑context queries by:
 3. **Enforcing** an MCP (Model Context Protocol) structured schema before acting.
 4. **Pausing** for human confirmation before sensitive DB lookups.
 
+---
+This is **Day 2** of a 3‑Sprint accelerated programme to master production‑grade agentic AI.  
+The system evolves from a single agent into a **multi-agent supervisor architecture** that delegates tasks to specialized workers by:
+
+1. **Supervising** the user query with a central routing agent that decides which specialist to call.
+2. **Delegating** to three specialized workers: a Retriever Agent (RAG expert), a DB Agent (banking data expert), and a Planner Agent (complex reasoning expert).
+3. **Handling multi‑step queries** by routing first to the Planner Agent, which breaks down the request into a step‑by‑step plan before invoking the Retriever or DB agents.
+4. **Maintaining coordination** through a hand‑off loop where each worker returns control to the Supervisor to decide the next action or finish.
+---
+This is **Day 3** of a 3‑Sprint accelerated programme to master production‑grade agentic AI.  
+The system is packaged as a production‑ready service with enterprise‑grade deployment and evaluation capabilities by:
+
+1. **Exposing** the multi-agent system through a FastAPI REST API with `/ask` and `/health` endpoints for real‑time inference.
+2. **Containerizing** the entire application with Docker and Docker Compose, ensuring consistent deployment across any environment.
+3. **Evaluating** retrieval quality using RAGAS metrics (Faithfulness, Answer Relevancy, Context Recall) to measure system performance quantitatively.
+4. **Enabling** seamless integration into CI/CD pipelines and cloud platforms, bridging the gap between prototype and production.
 ---
 
 ## 🏗️ System Architecture
