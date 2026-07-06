@@ -140,7 +140,7 @@ A supervisor delegates tasks to three specialized workers: Retriever Agent (RAG)
 **Goal:** Replace the single agent with a Supervisor that delegates tasks to specialized workers.
 
 **Architecture:**
-
+![System Architecture](sprint2.png)
 ```mermaid
 graph LR
     U[User] --> S[Supervisor]
