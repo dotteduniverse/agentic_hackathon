@@ -136,7 +136,100 @@ A supervisor delegates tasks to three specialized workers: Retriever Agent (RAG)
 
 
 ---
+## Sprint 3: Production API + Evaluation
 
+- **FastAPI** wraps the multi-agent system with `/ask` and `/health` endpoints.
+- **Docker** containerizes the service.
+- **RAGAS** provides evaluation metrics (Faithfulness, Context Recall, Answer Relevancy).
+
+---
+
+### 🚀 Features
+
+| Capability | Sprint | Implementation |
+| :--- | :--- | :--- |
+| **LangGraph orchestration** | 1 | StateGraph with conditional routing |
+| **Qdrant vector DB** | 1 | Local disk storage, `all-MiniLM-L6-v2` |
+| **MCP context schema** | 1 | Pydantic model enforced via `with_structured_output` |
+| **Human‑in‑the‑loop** | 1 | Interrupt before DB tool execution |
+| **Multi-Agent Supervisor** | 2 | Supervisor delegates to 3 specialized agents |
+| **Planner Agent** | 2 | Breaks down complex multi-step queries |
+| **FastAPI REST API** | 3 | `/ask` and `/health` endpoints |
+| **Docker containerization** | 3 | Production-ready deployment |
+| **RAGAS evaluation** | 3 | Faithfulness, Answer Relevancy, Context Recall |
+
+---
+
+### 📁 Project Structure
+
+```text
+agentic_hackathon/
+├── README.md                    # You are here
+├── requirements.txt
+├── Dockerfile
+├── docker-compose.yml
+├── .env.example
+├── config.py
+├── evaluate_ragas.py            # Sprint 3
+├── demo.py                      # Sprint 1 (Single Agent)
+├── demo_supervisor.py           # Sprint 2 (Multi-Agent)
+├── src/
+│   ├── __init__.py
+│   ├── api.py                   # Sprint 3 (FastAPI)
+│   ├── state.py                 # AgentState, MCPContext, SupervisorState
+│   ├── prompts.py
+│   ├── qdrant_ingest.py
+│   ├── graph.py                 # Sprint 1
+│   ├── agents.py                # Sprint 2 (Retriever, DB, Planner)
+│   ├── supervisor_graph.py      # Sprint 2
+│   └── tools/
+│       ├── retrieve.py
+│       └── mock_db.py
+├── docs/                        # Place PDFs here
+├── logs/
+└── qdrant_db/                   # Auto-generated, .gitignored
+### ⚙️ Setup & Installation
+bash
+python -m src.qdrant_ingest
+Expected output: ✅ Ingested X chunks into 'regulatory_docs'.
+
+▶️ Running the Demos
+Sprint 1: Single Agent
+bash
+python demo.py
+Sprint 2: Multi-Agent Supervisor
+bash
+python demo_supervisor.py
+Sprint 3: FastAPI Server
+bash
+uvicorn src.api:app --reload
+Test the API with curl:
+
+bash
+curl -X POST http://localhost:8000/ask \
+  -H "Content-Type: application/json" \
+  -d '{"query": "What does GDPR say about retention?"}'
+🐳 Docker Deployment
+bash
+docker build -t agentic-hackathon .
+docker run -p 8000:8000 -e GROQ_API_KEY=$GROQ_API_KEY agentic-hackathon
+Or use Docker Compose:
+
+bash
+docker-compose up
+📊 Evaluation (RAGAS)
+Run the RAGAS evaluation script to measure retrieval quality:
+
+bash
+python evaluate_ragas.py
+Example output:
+
+text
+RAGAS Evaluation Results:
+{'faithfulness': 0.85, 'answer_relevancy': 0.78, 'context_recall': 0.92}
+text
+
+---
 ---
 ## 🔮 Next Sprints
 
@@ -145,6 +238,7 @@ A supervisor delegates tasks to three specialized workers: Retriever Agent (RAG)
 | **1** | Single agent + Qdrant + MCP + HITL | ✅ Complete |
 | **2** | Multi‑agent Supervisor (Planner/Retriever/DB) with routing | ✅ Complete |
 | **3** | FastAPI + Docker + RAGAS evaluation | ✅ Complete |
+---
 
 ## 🧑‍💻 Author  
 **Veera Malla Reddy. V** – AI Solution Architect  
