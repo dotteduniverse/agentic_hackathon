@@ -153,32 +153,6 @@ graph LR
     S -->|response| Final[Final Answer]
 
 
----
-
-
-### Sprint 3: Production API + Evaluation
-
-**Goal:** Package the multi-agent system as a production-ready service with evaluation.
-
-**Components:**
-
-| Component | Technology | Purpose |
-| :--- | :--- | :--- |
-| **REST API** | FastAPI + Uvicorn | Serve the agent via HTTP endpoints (`/ask`, `/health`) |
-| **Containerization** | Docker + Docker Compose | Consistent deployment anywhere |
-| **Evaluation** | RAGAS | Measure retrieval quality (Faithfulness, Context Recall, Answer Relevancy) |
-
-**API Endpoints:**
-
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `POST` | `/ask` | Submit a query, receive answer + MCP context + routing path |
-| `GET` | `/health` | Health check |
-
-**Run the API:**
-```bash
-uvicorn src.api:app --reload
-
 ## 🧑‍💻 Author  
 **Veera Malla Reddy. V** – AI Solution Architect  
 [LinkedIn](https://www.linkedin.com/in/veera-malla-reddy/) · [GitHub](https://github.com/dotteduniverse/)
