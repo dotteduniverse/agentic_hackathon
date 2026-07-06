@@ -125,14 +125,6 @@ mcp_context: {"intent": "compliance_check", "balance": 4500.0}
 final_answer: Under Article 5, retention must be minimised...
 ```
 ---
-## 🔮 Next Sprints
-
-| Sprint | Focus | Status |
-| :--- | :--- | :--- |
-| **1** | Single agent + Qdrant + MCP + HITL | ✅ Complete |
-| **2** | Multi‑agent Supervisor (Planner/Retriever/DB) with routing | ✅ Complete |
-| **3** | FastAPI + Docker + RAGAS evaluation | ✅ Complete |
-
 # Sprint 2: Multi-Agent Supervisor
 A supervisor delegates tasks to three specialized workers: Retriever Agent (RAG), DB Agent (data), and Planner Agent (reasoning). Complex queries are routed to the Planner first.
 ### Sprint 2: Multi-Agent Supervisor
@@ -144,6 +136,15 @@ A supervisor delegates tasks to three specialized workers: Retriever Agent (RAG)
 
 
 ---
+
+---
+## 🔮 Next Sprints
+
+| Sprint | Focus | Status |
+| :--- | :--- | :--- |
+| **1** | Single agent + Qdrant + MCP + HITL | ✅ Complete |
+| **2** | Multi‑agent Supervisor (Planner/Retriever/DB) with routing | ✅ Complete |
+| **3** | FastAPI + Docker + RAGAS evaluation | ✅ Complete |
 
 ## 🧑‍💻 Author  
 **Veera Malla Reddy. V** – AI Solution Architect  
