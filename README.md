@@ -142,15 +142,15 @@ A supervisor delegates tasks to three specialized workers: Retriever Agent (RAG)
 **Architecture:**
 
 ```mermaid
-flowchart LR
+graph LR
     U[User] --> S[Supervisor]
-    S -->|Route| P[Planner Agent]
-    S -->|Route| R[Retriever Agent]
-    S -->|Route| D[DB Agent]
-    P --> S
-    R --> S
-    D --> S
-    S --> FINAL[Final Answer]
+    S -->|route| P[Planner Agent]
+    S -->|route| R[Retriever Agent]
+    S -->|route| D[DB Agent]
+    P -->|return| S
+    R -->|return| S
+    D -->|return| S
+    S -->|response| Final[Final Answer]
 
 
 ---
