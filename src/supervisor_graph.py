@@ -1,3 +1,7 @@
+import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from typing import Literal
 from langgraph.graph import StateGraph, END
 from langchain_core.messages import HumanMessage
@@ -93,11 +97,12 @@ def build_supervisor_graph():
 
 # ---------- MCP Context (reused from Day 1) ----------
 def get_mcp_context(query: str) -> MCPContext:
-    """Generate MCP context using structured output."""
+    """Generate MCP context with proper null handling."""
     structured_llm = llm.with_structured_output(MCPContext)
     prompt = (
         f"User query: {query}\n"
         "Based on this, output an MCPContext with required_action one of: "
-        "'retrieve_only', 'db_lookup', 'both', or 'plan_only'."
+        "'retrieve_only', 'db_lookup', 'both', or 'plan_only'.\n"
+        "For customer_balance, if not requested or unknown, output null (not 'None' or 'none')."
     )
     return structured_llm.invoke(prompt)

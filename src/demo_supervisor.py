@@ -2,6 +2,10 @@
 Multi-Agent Supervisor Demo
 Run with: python demo_supervisor.py
 """
+import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from langchain_core.messages import HumanMessage
 from src.supervisor_graph import build_supervisor_graph, get_mcp_context
 from src.state import SupervisorState
